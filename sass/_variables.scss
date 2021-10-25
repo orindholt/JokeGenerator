@@ -1,0 +1,12 @@
+$primary: #fcba03;
+
+$colors: (
+    "primary": $primary,
+    "secondary": complement($primary),
+    "white": #fff
+);
+
+$padding-size-base: 10px;
+$margin-size-base: 10px;
+
+$font-size-base: 20px;

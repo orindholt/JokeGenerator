@@ -1,0 +1,28 @@
+{
+  "name": "jokegenerator",
+  "version": "1.0.0",
+  "description": "*Welcome to the joke zone..*",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/orindholt/JokeGenerator.git"
+  },
+  "keywords": [],
+  "author": "Oliver Rindholt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/orindholt/JokeGenerator/issues"
+  },
+  "homepage": "https://github.com/orindholt/JokeGenerator#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-sass": "^5.0.0",
+    "sass": "^1.43.3"
+  },
+  "dependencies": {
+    "gulp-purgecss": "^4.0.3"
+  }
+}

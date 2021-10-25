@@ -1,0 +1,92 @@
+$utilities: (
+    "padding": (
+        "prefix": "p",
+        "values": (
+            "0": 0,
+            "1": $padding-size-base,
+            "2": $padding-size-base * 2,
+            "3": $padding-size-base * 4,
+            "4": $padding-size-base * 6,
+            "5": $padding-size-base * 8
+        )
+    ),
+    "margin": (
+        "prefix": "m",
+        "values": (
+            "0": 0,
+            "1": $margin-size-base,
+            "2": $margin-size-base * 2,
+            "3": $margin-size-base * 4,
+            "4": $margin-size-base * 6,
+            "5": $margin-size-base * 8
+        )
+    ),
+    "display": (
+        "prefix": "d",
+        "values": (
+            "n": none,
+            "b": block,
+            "i": inline,
+            "i-b": inline-block,
+            "f": flex,
+            "g": grid
+        )
+    ),
+    "opacity": (
+        "prefix": "o",
+        "values": (
+            "0": 0,
+            "1": 0.1,
+            "2": 0.2,
+            "3": 0.3,
+            "4": 0.4,
+            "5": 0.5,
+            "6": 0.6,
+            "7": 0.7,
+            "8": 0.8,
+            "9": 0.9,
+            "10": 1
+        )
+    ),
+    "font-size": (
+        "prefix": "fs",
+        "values": (
+            "default": $font-size-base,
+            "xs": math.div($font-size-base, 2),
+            "s": math.div($font-size-base, 1.5),
+            "l": $font-size-base * 1.5,
+            "xl": $font-size-base * 2,
+            "xxl": $font-size-base * 3
+        )
+    ),
+    "font-weight": (
+        "prefix": "fw",
+        "values": (
+            "x-l": 200,
+            "l": 300,
+            "n": 400,
+            "m": 500,
+            "m-b": 600,
+            "b": 700,
+            "x-b": 800,
+            "xx-b": 900
+        )
+    )
+);
+
+@each $prop, $map in $utilities {
+    $prefix: map-get($map, "prefix");
+    $values: map-get($map, "values");
+
+    @each $k, $v in $values {
+        @if($k == "default"){
+            .#{$prefix}{
+                #{$prop}: $v;
+            }
+        } @else {
+            .#{$prefix}-#{$k}{
+                #{$prop}: $v;
+            }
+        }
+    }
+}

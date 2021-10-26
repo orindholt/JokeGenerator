@@ -1,5 +1,5 @@
 @each $key, $val in $colors {
-    .button-#{$key}{
+    .button_#{$key}{
         border: 5px solid $val;
         background-color: transparent;
         color: $val;

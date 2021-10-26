@@ -1,14 +1,16 @@
-body {
-    background: rgb(255,255,255);
+.Body {
+    background: map-get($colors, "white");
     background: linear-gradient(90deg, 
         darken(map-get($colors, "white"), 5%) 0%,
         map-get($colors, "white") 50%, 
         darken(map-get($colors, "white"), 5%) 100%);
 }
-main {
+
+.Main {
     font-family: $font-family;
     display: flex;
     flex-flow: column wrap;
     align-items: center;
     padding: 10% 0;
+    text-align: center;
 }

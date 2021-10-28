@@ -1,19 +1,44 @@
+/* import "core-js/stable";
+import "regenerator-runtime/runtime"; */
 document.addEventListener("DOMContentLoaded", ()=>{
-    const apiUrl = 'https://icanhazdadjoke.com/';
     const jokeTxt = document.querySelector("#jokeTxt");
-    async function newJoke(){
-        const reponse = await fetch(apiUrl, {headers: {Accept: "application/json"}});
-        const data = await reponse.json();
-        if(data.status !== 200){
-            if(data.status == 429){
-                jokeTxt.innerHTML = `Woah. Too fast!`;
-            } else {
-                jokeTxt.innerHTML = `There was an ERROR!<br>Error status: (${data.status})`;
-            }
-        } else {
-            jokeTxt.textContent = data.joke;
+    const jokeList = document.querySelector("#jokeList");
+
+    const queryString = window.location.search;
+    const urlParams = (param) => new URLSearchParams(queryString).get(param);
+    const url = 'https://icanhazdadjoke.com/';
+    // async fetch method
+
+    /* const myFetch = async (api) =>{
+        const response = await fetch(api, {headers: {Accept: "application/json"}});
+        const data = await response.json();
+        return data;
+    } */
+
+    // async axios method
+    async function ax(api){
+        const config = {
+            method: "get",
+            url: api,
+            headers: {Accept: "application/json"}
         }
+        const response = await axios(config);
+        return response;
+    }
+
+    // new joke function
+    function newJoke(search = ""){
+        console.log(`${url}${search ? `search?term=${search}` : ""}`);
+        ax(`${url}${search ? `search?term=${search}` : ""}`).then(data => {
+            data = data.data;
+            if(!search){
+                jokeTxt.textContent = data.joke;
+            } else {
+                data.results.forEach(result => jokeList.innerHTML += `<li>${result.joke}</li>`);
+            }
+        });
     }
     newJoke();
-    document.querySelector("#jokeBtn").addEventListener("click", newJoke);
+    console.log(newJoke(urlParams("term")));
+    document.querySelector("#jokeBtn").addEventListener("click", ()=>{newJoke()});
 });
